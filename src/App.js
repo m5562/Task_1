@@ -1,11 +1,18 @@
+import Map from "./Components/Map";
 import Navbar from "./Components/Navbar";
-import HomePage from "./Components/Homepage";
+import {useJsApiLoader } from '@react-google-maps/api';
+
+import { mapOptions } from "./Components/MapConfiguration";
 function App() {
+  const { isLoaded } = useJsApiLoader({
+    id:mapOptions.googleMapsApiKey,
+    googleMapsApiKey: mapOptions.googleMapsApiKey
+  })
   return (
-  <>
-  <Navbar/>
-  <HomePage/>
-  </>
+  <div className="App">
+    <Navbar/>
+<Map isLoaded={isLoaded}/>
+  </div>
   );
 }
 
